@@ -21,18 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ✅ pnpm을 먼저 설치
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      # ✅ 그 다음 Node + pnpm cache
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+
+      # pnpm을 확실히 활성화 (pnpm not found 방지)
+      - name: Enable Corepack + pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.0 --activate
+          pnpm -v
 
       - name: Install
         run: pnpm install --frozen-lockfile
@@ -50,8 +49,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy
         uses: actions/deploy-pages@v4
