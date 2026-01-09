@@ -1,3 +1,15 @@
+# StyleBank
+
+A minimal portfolio-ready UI starter built with **Vite + React + TypeScript**, styled with **Tailwind CSS** and **shadcn/ui**.
+
+## Highlights
+- Clean folder structure (`pages / components / ui / lib`)
+- shadcn/ui primitives wired with Tailwind design tokens
+- GitHub Pages deployment workflow
+
+## Live
+- https://ina0203.github.io/StyleBank/
+
 # Shadcn-UI Template Usage Instructions
 
 ## technology stack
