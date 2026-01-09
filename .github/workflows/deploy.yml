@@ -21,18 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # pnpm을 확실히 활성화 (pnpm not found 방지)
       - name: Enable Corepack + pnpm
         run: |
           corepack enable
           corepack prepare pnpm@9.12.0 --activate
           pnpm -v
-
 
       - name: Install
         run: pnpm install --no-frozen-lockfile
@@ -40,22 +41,18 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Check build output
-        run: ls -la
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-        path: dist
-
+          path: dist
 
   deploy:
-  needs: build
-  runs-on: ubuntu-latest
-  environment:
-    name: github-pages
-    url: ${{ steps.deployment.outputs.page_url }}
-  steps:
-    - name: Deploy
-      id: deployment
-      uses: actions/deploy-pages@v4
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
