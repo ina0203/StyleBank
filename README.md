@@ -1,6 +1,13 @@
 # StyleBank
 
-A portfolio-ready fashion style curation UI built with **React + Vite + Tailwind + shadcn/ui**.
+# StyleBank
+
+A product-focused fashion style curation UI demonstrating scalable component architecture, 
+design system thinking, and real-world UI patterns using React + shadcn/ui.
+
+StyleBank is a portfolio project that showcases how fashion data, user intent,
+and UI systems can be translated into reusable, production-ready components.
+
 
 ## Live Demo
 - https://ina0203.github.io/StyleBank/
